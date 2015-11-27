@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/Henri/AndroidStudioProjects/SmartCard/gPKIKeyStore/build/intermediates/bundles/debug/res/values/values.xml -->
+    <eat-comment/>
+    <string-array name="idgo800_ble_pairing_error">
+	    <item>"Bluetooth Smart device paired successfully."</item>
+	    <item>"No bluetooth device found."</item>
+	    <item>"Pairing cancelled by user."</item>
+	    <item>"Bluetooth device already paired."</item>
+	    <item>"Pairing failed."</item>
+	    <item>"Bluetooth Smart device paired successfully."</item>
+	</string-array>
+    <dimen name="idgo800_bottom_space">20dip</dimen>
+    <string name="idgo800_admin">"Admin"</string>
+    <string name="idgo800_all_pins">"All PINs"</string>
+    <string name="idgo800_app_name">"IDGo 800"</string>
+    <string name="idgo800_authentication_pin">"Authentication PIN"</string>
+    <string name="idgo800_ble_bat_level">"Battery Level: "</string>
+    <string name="idgo800_ble_config_list">"Paired Bluetooth Smart devices"</string>
+    <string name="idgo800_ble_config_no_reader">"No Bluetooth device is currently paired"</string>
+    <string name="idgo800_ble_config_pairing">"Bluetooth Smart pairing"</string>
+    <string name="idgo800_ble_connecting">"Connecting…"</string>
+    <string name="idgo800_ble_enable_bt">"Bluetooth is not enabled.\nDo you want to enable it?"</string>
+    <string name="idgo800_ble_enable_bt_title">"Information"</string>
+    <string name="idgo800_ble_firmware_rev">"Firmware rev.: "</string>
+    <string name="idgo800_ble_found_reader">"Found Bluetooth device"</string>
+    <string name="idgo800_ble_hardware_rev">"Hardware rev.: "</string>
+    <string name="idgo800_ble_model_no">"Model No: "</string>
+    <string name="idgo800_ble_need_reader">"The Bluetooth device should be connected to achieve this operation.\nDo you really want to remove it?"</string>
+    <string name="idgo800_ble_no_reader">"No Bluetooth device found"</string>
+    <string name="idgo800_ble_pairing">"Pairing…"</string>
+    <string name="idgo800_ble_pairing_code">"Enter pairing code."</string>
+    <string name="idgo800_ble_pairing_mode">"Set the Bluetooth Smart device in pairing mode."</string>
+    <string name="idgo800_ble_reader_edit">"Edit name"</string>
+    <string name="idgo800_ble_reader_edit_summary">"Enter new device name."</string>
+    <string name="idgo800_ble_reader_forget">"Unpair"</string>
+    <string name="idgo800_ble_reader_forget_conf">"Do you really want to unpair this device?"</string>
+    <string name="idgo800_ble_reader_info">"Device information"</string>
+    <string name="idgo800_ble_reader_name">"Name: "</string>
+    <string name="idgo800_ble_reader_not_connected">"The Bluetooth Smart device is not detected."</string>
+    <string name="idgo800_ble_serial_no">"Serial No: "</string>
+    <string name="idgo800_ble_software_rev">"Software rev.: "</string>
+    <string name="idgo800_ble_waiting">"Wait…"</string>
+    <string name="idgo800_config_ble_reader">"Bluetooth Smart device"</string>
+    <string name="idgo800_config_ble_reader_disabled">"Disabled"</string>
+    <string name="idgo800_config_ble_reader_enabled">"Enabled"</string>
+    <string name="idgo800_config_keyboard">"PIN keyboard type"</string>
+    <string name="idgo800_config_keyboard_numeric">"Standard Numeric"</string>
+    <string name="idgo800_config_keyboard_secure">"Secured Numeric"</string>
+    <string name="idgo800_config_keyboard_text">"Standard Text"</string>
+    <string name="idgo800_config_language">"Language"</string>
+    <string name="idgo800_config_language_default">"Default (system)"</string>
+    <string name="idgo800_config_language_english">"English"</string>
+    <string name="idgo800_config_language_french">"French"</string>
+    <string name="idgo800_config_language_spanish">"Spanish"</string>
+    <string name="idgo800_config_omapi_reader">"UICC and µSD Readers"</string>
+    <string name="idgo800_config_omapi_reader_disabled">"Disabled"</string>
+    <string name="idgo800_config_omapi_reader_enabled">"Enabled"</string>
+    <string name="idgo800_config_secure_ui">"Secured UI"</string>
+    <string name="idgo800_config_secure_ui_disabled">"Disabled"</string>
+    <string name="idgo800_config_secure_ui_enabled">"Enabled"</string>
+    <string name="idgo800_config_soft_pki">"Software PKI Service"</string>
+    <string name="idgo800_config_soft_pki_disabled">"Disabled"</string>
+    <string name="idgo800_config_soft_pki_enabled">"Enabled"</string>
+    <string name="idgo800_diag_bt_le">"Bluetooth Smart"</string>
+    <string name="idgo800_diag_nfc">"NFC"</string>
+    <string name="idgo800_diag_not_supported">"✘ "</string>
+    <string name="idgo800_diag_not_supported_msg">"Not supported"</string>
+    <string name="idgo800_diag_omapi">"OMAPI: SIM, µSD, eSE"</string>
+    <string name="idgo800_diag_omapi_sd_version">"µSD version:"</string>
+    <string name="idgo800_diag_omapi_sim_version">"SIM version: "</string>
+    <string name="idgo800_diag_root_warning">"This device has Root privilege!"</string>
+    <string name="idgo800_diag_supported">"✔ "</string>
+    <string name="idgo800_diag_usb">"USB"</string>
+    <string name="idgo800_dialog_cancel">"Cancel"</string>
+    <string name="idgo800_dialog_clear">"Clear"</string>
+    <string name="idgo800_dialog_ok">"OK"</string>
+    <string name="idgo800_digital_signature_pin">"Digital Signature PIN"</string>
+    <string name="idgo800_encryption_pin">"Encryption PIN"</string>
+    <string name="idgo800_license_apdu">"APDU service"</string>
+    <string name="idgo800_license_clear_conf">"Do you really want to clear this license?"</string>
+    <string name="idgo800_license_core">"Core (PKI/OTP with BT Smart/µSD)"</string>
+    <string name="idgo800_license_device_id">"Device Identifier: "</string>
+    <string name="idgo800_license_disabled">"✘ "</string>
+    <string name="idgo800_license_enabled">"✔ "</string>
+    <string name="idgo800_license_id">"License Number: "</string>
+    <string name="idgo800_license_idprime">"IDPrime .NET and MD"</string>
+    <string name="idgo800_license_otp">"OTP service"</string>
+    <string name="idgo800_license_piv">"IDPrime PIV"</string>
+    <string name="idgo800_license_validity">"Validity: "</string>
+    <string name="idgo800_license_validity_always">"Life time"</string>
+    <string name="idgo800_license_validity_expired">"Expired"</string>
+    <string name="idgo800_license_validity_unit">"day left"</string>
+    <string name="idgo800_license_validity_units">"days left"</string>
+    <string name="idgo800_msg_no_ble">"Unable to activate support of bluetooth device.\nBluetooth Smart is not supporteded on this device!"</string>
+    <string name="idgo800_msg_no_omapi">"Unable to activate support of Embedded SE.\nOMAPI is not installed on this device!"</string>
+    <string name="idgo800_no">"No"</string>
+    <string name="idgo800_non_repudiation_pin">"Non Repudiation PIN"</string>
+    <string name="idgo800_pin">"PIN"</string>
+    <string name="idgo800_pp_error">"PIN Policy Error"</string>
+    <string name="idgo800_pp_error_1">"The new PIN is too short"</string>
+    <string name="idgo800_pp_error_10">"The new PIN has too many consecutive repeated characters"</string>
+    <string name="idgo800_pp_error_2">"The new PIN is too long"</string>
+    <string name="idgo800_pp_error_3">"The new PIN has invalid character(s)"</string>
+    <string name="idgo800_pp_error_4">"The new PIN has not mandatory character(s)"</string>
+    <string name="idgo800_pp_error_5">"The new PIN has too many repeated characters"</string>
+    <string name="idgo800_pp_error_6">"The new PIN has too many repetition of a character"</string>
+    <string name="idgo800_pp_error_7">"The new PIN has adjacent repetition of a character"</string>
+    <string name="idgo800_pp_error_8">"The new PIN is already used"</string>
+    <string name="idgo800_pp_error_9">"The new PIN has a too long sequence of characters"</string>
+    <string name="idgo800_role">"Role"</string>
+    <string name="idgo800_ui_challenge">"Challenge"</string>
+    <string name="idgo800_ui_change_ko">"Change PIN failed"</string>
+    <string name="idgo800_ui_change_pin">"Change"</string>
+    <string name="idgo800_ui_enter_authentication_pin">"Enter your Authentication PIN"</string>
+    <string name="idgo800_ui_enter_conf_pin">"Confirm new PIN"</string>
+    <string name="idgo800_ui_enter_digital_signature_pin">"Enter Digital Signature PIN"</string>
+    <string name="idgo800_ui_enter_encryption_pin">"Enter your Encryption PIN"</string>
+    <string name="idgo800_ui_enter_new_pin">"Enter new PIN"</string>
+    <string name="idgo800_ui_enter_non_repudiation_pin">"Enter your Non Repudiation PIN"</string>
+    <string name="idgo800_ui_enter_old_pin">"Enter old PIN"</string>
+    <string name="idgo800_ui_enter_pin">"Enter your PIN"</string>
+    <string name="idgo800_ui_enter_pin_pp">" Please use pinpad reader "</string>
+    <string name="idgo800_ui_enter_puk">"Enter PUK"</string>
+    <string name="idgo800_ui_enter_unblock_pin">"Enter your Unblock PIN"</string>
+    <string name="idgo800_ui_enter_user_pin">"Enter your User PIN"</string>
+    <string name="idgo800_ui_login">"Login"</string>
+    <string name="idgo800_ui_login_ko">"Login failed"</string>
+    <string name="idgo800_ui_remaining_tries">"Remaining tries"</string>
+    <string name="idgo800_ui_response">"Response"</string>
+    <string name="idgo800_ui_unblock_ko">"Unblock PIN failed"</string>
+    <string name="idgo800_ui_unblock_pin">"Unblock"</string>
+    <string name="idgo800_ui_wrong_conf">"PIN confirmation doesn't match"</string>
+    <string name="idgo800_unblock_pin">"Unblock PIN"</string>
+    <string name="idgo800_unknown">"Unknown"</string>
+    <string name="idgo800_user_pin">"User PIN"</string>
+    <string name="idgo800_yes">"Yes"</string>
+    <style name="idgo800_DefaultTheme" parent="android:style/Theme.Holo.Light">
+    </style>
+    <style name="idgo800_Text"/>
+    <style name="idgo800_Text.Black">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="idgo800_Text.Large">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="idgo800_Text.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="idgo800_Text.White">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="idgo800_Text.White_Large">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="idgo800_Text.White_Medium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="idgo800_Text.White_Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="idgo800_TransparentTheme" parent="android:Theme.Holo.Light">
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:background">@android:color/transparent</item>
+	    <item name="android:windowBackground">@android:color/transparent</item>
+	    <item name="android:colorBackgroundCacheHint">@null</item>
+	    <item name="android:windowIsTranslucent">true</item>
+	    <item name="android:windowAnimationStyle">@android:style/Animation</item>
+	</style>
+</resources>

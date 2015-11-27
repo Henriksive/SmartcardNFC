@@ -49,6 +49,10 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
         if (isoDep != null) {
             try {
                 isoDep.connect();
+                Log.i(TAG, "MAX LENGTH : " + isoDep.getMaxTransceiveLength());
+                Log.i(TAG, "Timeout (ms) : " + isoDep.getTimeout());
+                isoDep.setTimeout(60000);
+                Log.i(TAG, "New timeout (ms) : " + isoDep.getTimeout());
 
                 //Select correct application on card
                 Log.d(TAG, "Starting select application");
@@ -67,6 +71,7 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
                     for(byte[] payloadData : _dataList){
                         Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(payloadData));
                         byte[] response = isoDep.transceive(payloadData);
+
                         Log.d(TAG, "Receiving: " + Converter.ByteArrayToHexString(response));
 
                         cCardCallBack.get().onInfoReceived(Converter.ByteArrayToHexString(response));

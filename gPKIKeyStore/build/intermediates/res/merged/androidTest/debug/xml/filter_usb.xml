@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Gemalto (Gemplus) -->
+    <usb-device vendor-id="2278" />
+
+    <!-- STM -->
+    <usb-device vendor-id="1155" />
+
+    <!-- SCM -->
+    <usb-device vendor-id="1254" />
+
+    <!-- ACR -->
+    <usb-device vendor-id="1839" />
+
+    <!-- OmniKey -->
+    <usb-device vendor-id="1899" />
+
+    <!-- Precise -->
+    <usb-device vendor-id="2243" />
+
+    <!-- Fujitsu Siemens -->
+    <usb-device vendor-id="2260" />
+    <usb-device vendor-id="3064" />
+
+    <!-- Schlumberger -->
+    <usb-device vendor-id="2419" />
+
+    <!-- Smart Card Technology -->
+    <usb-device vendor-id="2473" />
+
+    <!-- ActivCard -->
+    <usb-device vendor-id="2499" />
+
+    <!-- Todos -->
+    <usb-device vendor-id="2828" />
+
+    <!-- ID3 -->
+    <usb-device vendor-id="2945" />
+
+    <!-- O2 Micro -->
+    <usb-device vendor-id="2967" />
+
+    <!-- Reiner SCT -->
+    <usb-device vendor-id="3147" />
+
+    <!-- Castles -->
+    <usb-device vendor-id="3238" />
+
+    <!-- JS Digitech -->
+    <usb-device vendor-id="3288" />
+
+    <!-- Kobil -->
+    <usb-device vendor-id="3398" />
+
+    <!-- Athena -->
+    <usb-device vendor-id="3523" />
+
+    <!-- Thursby -->
+    <usb-device vendor-id="6518" />
+
+    <!-- VASCO -->
+    <usb-device vendor-id="6724" />
+
+</resources><!-- From: file:/C:/Users/Henri/AndroidStudioProjects/SmartCard/gPKIKeyStore/src/main/res/xml/filter_usb.xml --><!-- From: file:/C:/Users/Henri/AndroidStudioProjects/SmartCard/gPKIKeyStore/build/intermediates/bundles/debug/res/xml/filter_usb.xml -->

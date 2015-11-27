@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SmartCard.iml" filepath="$PROJECT_DIR$/SmartCard.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gPKIKeyStore/gPKIKeyStore.iml" filepath="$PROJECT_DIR$/gPKIKeyStore/gPKIKeyStore.iml" />
       <module fileurl="file://$PROJECT_DIR$/smartcardlibrary/smartcardlibrary.iml" filepath="$PROJECT_DIR$/smartcardlibrary/smartcardlibrary.iml" />
     </modules>
   </component>

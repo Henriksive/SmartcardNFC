@@ -58,4 +58,16 @@ public class Converter {
         }
         return builder.toString();
     }
+
+    public static String hexLengthToProperHex(String hexLength){
+        if(hexLength.length() == 1)
+            hexLength = "000" + hexLength;
+        else if(hexLength.length() == 2){
+            hexLength = "00" + hexLength;
+        }
+        else if(hexLength.length() == 3){
+            hexLength = "0" + hexLength;
+        }
+        return hexLength;
+    }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gemalto.idgo800"
+    android:versionCode="300014"
+    android:versionName="3.0.0-014" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+    <uses-permission android:name="com.secureflashcard.openmobileapi.SMARTCARD" />
+
+    <!--
+     application 
+        android:label="IDGo800"
+    -->
+    <application>
+        <uses-library
+            android:name="org.simalliance.openmobileapi"
+            android:required="false" />
+        <uses-library
+            android:name="android.hardware.bluetooth_le"
+            android:required="false" />
+
+        <activity
+            android:name="com.gemalto.idgo800.internal.UIActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:theme="@style/idgo800_TransparentTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gemalto.idgo800.internal.SecureKeypadFragment"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:theme="@style/idgo800_TransparentTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Activity to detect NFC tag -->
+        <activity
+            android:name="com.gemalto.idgo800.internal.TagActivity"
+            android:alwaysRetainTaskState="true"
+            android:excludeFromRecents="true"
+            android:theme="@style/idgo800_TransparentTheme" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- *************************************************************** -->
+        <!-- Readers discovery service -->
+        <!-- *************************************************************** -->
+        <service
+            android:name="com.gemalto.idgo800.GMMDiscoveryService"
+            android:exported="false"
+            android:label="GMMDiscoveryService" >
+        </service>
+
+        <!-- *************************************************************** -->
+        <!-- Meta data about the subclass of discovery service -->
+        <!-- *************************************************************** -->
+        <meta-data
+            android:name="com.gemalto.gmm.android.actions.DISCOVERY_SERVICE"
+            android:value="com.gemalto.idgo800.GMMDiscoveryService" />
+    </application>
+
+</manifest>

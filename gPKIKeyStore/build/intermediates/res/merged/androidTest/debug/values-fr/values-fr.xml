@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/Henri/AndroidStudioProjects/SmartCard/gPKIKeyStore/build/intermediates/bundles/debug/res/values-fr/values-fr.xml -->
+    <eat-comment/>
+    <string-array name="idgo800_ble_pairing_error">
+	    <item>"Lecteur Bluetooth Smart associé avec succès."</item>
+	    <item>"Aucun lecteur trouvé."</item>
+	    <item>"Association abandonnée."</item>
+	    <item>"Lecteur déjà associé."</item>
+	    <item>"Echec de l'association."</item>
+	    <item>"Lecteur Bluetooth Smart associé avec succès."</item>
+	</string-array>
+    <string name="idgo800_admin">"Admin"</string>
+    <string name="idgo800_all_pins">"Tous les PINs"</string>
+    <string name="idgo800_app_name">"IDGo 800"</string>
+    <string name="idgo800_authentication_pin">"PIN d'authentification"</string>
+    <string name="idgo800_ble_bat_level">"Niveau batterie: "</string>
+    <string name="idgo800_ble_config_list">"Lecteurs Bluetooth Smart associés"</string>
+    <string name="idgo800_ble_config_no_reader">"Aucun lecteur Bluetooth n'est associé"</string>
+    <string name="idgo800_ble_config_pairing">"Association Bluetooth Smart"</string>
+    <string name="idgo800_ble_connecting">"Connexion…"</string>
+    <string name="idgo800_ble_enable_bt">"La connexion Bluetooth n'est pas activée.\nVoulez-vous l'activer ?"</string>
+    <string name="idgo800_ble_enable_bt_title">"Information"</string>
+    <string name="idgo800_ble_firmware_rev">"Version microgiciel: "</string>
+    <string name="idgo800_ble_found_reader">"Lecteur Bluetooth trouvé"</string>
+    <string name="idgo800_ble_hardware_rev">"Version matériel: "</string>
+    <string name="idgo800_ble_model_no">"Modèle: "</string>
+    <string name="idgo800_ble_need_reader">"Le lecteur devrait être connecté pour effectuer cette opération.\nVoulez-vous tout de même le supprimer ?"</string>
+    <string name="idgo800_ble_no_reader">"Aucun lecteur Bluetooth trouvé"</string>
+    <string name="idgo800_ble_pairing">"Association…"</string>
+    <string name="idgo800_ble_pairing_code">"Entrez le code d'association."</string>
+    <string name="idgo800_ble_pairing_mode">"Mettez le lecteur Bluetooth Smart en mode association."</string>
+    <string name="idgo800_ble_reader_edit">"Modifier nom"</string>
+    <string name="idgo800_ble_reader_edit_summary">"Entrez un nouveau nom."</string>
+    <string name="idgo800_ble_reader_forget">"Supprimer"</string>
+    <string name="idgo800_ble_reader_forget_conf">"Voulez-vous vraiment dissocier ce lecteur ?"</string>
+    <string name="idgo800_ble_reader_info">"Informations lecteur"</string>
+    <string name="idgo800_ble_reader_name">"Nom: "</string>
+    <string name="idgo800_ble_reader_not_connected">"Le lecteur Bluetooth n'est pas détecté."</string>
+    <string name="idgo800_ble_serial_no">"N. série: "</string>
+    <string name="idgo800_ble_software_rev">"Version logiciel: "</string>
+    <string name="idgo800_ble_waiting">"Attendez…"</string>
+    <string name="idgo800_config_ble_reader">"Lecteur Bluetooth Smart"</string>
+    <string name="idgo800_config_ble_reader_disabled">"Désactivé"</string>
+    <string name="idgo800_config_ble_reader_enabled">"Activé"</string>
+    <string name="idgo800_config_keyboard">"Type de clavier PIN"</string>
+    <string name="idgo800_config_keyboard_numeric">"Numérique Standard"</string>
+    <string name="idgo800_config_keyboard_secure">"Numérique Securisé"</string>
+    <string name="idgo800_config_keyboard_text">"Texte Standard"</string>
+    <string name="idgo800_config_language">"Langue"</string>
+    <string name="idgo800_config_language_default">"Défaut (système)"</string>
+    <string name="idgo800_config_language_english">"Anglais"</string>
+    <string name="idgo800_config_language_french">"Français"</string>
+    <string name="idgo800_config_language_spanish">"Espagnol"</string>
+    <string name="idgo800_config_omapi_reader">"Lecteurs UICC et µSD"</string>
+    <string name="idgo800_config_omapi_reader_disabled">"Désactivé"</string>
+    <string name="idgo800_config_omapi_reader_enabled">"Activé"</string>
+    <string name="idgo800_config_secure_ui">"Affichage Sécurisé"</string>
+    <string name="idgo800_config_secure_ui_disabled">"Désactivé"</string>
+    <string name="idgo800_config_secure_ui_enabled">"Activé"</string>
+    <string name="idgo800_config_soft_pki">"Service PKI Logiciel"</string>
+    <string name="idgo800_config_soft_pki_disabled">"Désactivé"</string>
+    <string name="idgo800_config_soft_pki_enabled">"Activé"</string>
+    <string name="idgo800_diag_bt_le">"Bluetooth Smart"</string>
+    <string name="idgo800_diag_nfc">"NFC"</string>
+    <string name="idgo800_diag_not_supported">"✘ "</string>
+    <string name="idgo800_diag_not_supported_msg">"Non supporté"</string>
+    <string name="idgo800_diag_omapi">"OMAPI: SIM, µSD, eSE"</string>
+    <string name="idgo800_diag_omapi_sd_version">"Version µSD:"</string>
+    <string name="idgo800_diag_omapi_sim_version">"Version SIM: "</string>
+    <string name="idgo800_diag_root_warning">"Cet appareil a les accès Root !"</string>
+    <string name="idgo800_diag_supported">"✔ "</string>
+    <string name="idgo800_diag_usb">"USB"</string>
+    <string name="idgo800_dialog_cancel">"Annuler"</string>
+    <string name="idgo800_dialog_clear">"Effacer"</string>
+    <string name="idgo800_dialog_ok">"OK"</string>
+    <string name="idgo800_digital_signature_pin">"PIN de signature digitale"</string>
+    <string name="idgo800_encryption_pin">"PIN de chiffrement"</string>
+    <string name="idgo800_license_apdu">"Service APDU"</string>
+    <string name="idgo800_license_clear_conf">"Voulez-vous vraiment effacer cette licence ?"</string>
+    <string name="idgo800_license_core">"Core (PKI/OTP avec BT Smart/µSD)"</string>
+    <string name="idgo800_license_device_id">"Identifiant Appareil: "</string>
+    <string name="idgo800_license_disabled">"✘ "</string>
+    <string name="idgo800_license_enabled">"✔ "</string>
+    <string name="idgo800_license_id">"Numéro de Licence: "</string>
+    <string name="idgo800_license_idprime">"IDPrime .NET et MD"</string>
+    <string name="idgo800_license_otp">"Service OTP"</string>
+    <string name="idgo800_license_piv">"IDPrime PIV"</string>
+    <string name="idgo800_license_validity">"Validité: "</string>
+    <string name="idgo800_license_validity_always">"Perpétuelle"</string>
+    <string name="idgo800_license_validity_expired">"Expirée"</string>
+    <string name="idgo800_license_validity_unit">"jour restant"</string>
+    <string name="idgo800_license_validity_units">"jours restants"</string>
+    <string name="idgo800_msg_no_ble">"Impossible d'activer le support de lecteur Bluetooth.\nLe Bluetooth Smart n'est pas supporté sur cet appareil !"</string>
+    <string name="idgo800_msg_no_omapi">"Impossible d'activer le support de l'élément sécurisé interne.\nOMAPI n'est pas présent sur cet appareil !"</string>
+    <string name="idgo800_no">"Non"</string>
+    <string name="idgo800_non_repudiation_pin">"PIN de non répudiation"</string>
+    <string name="idgo800_pin">"PIN"</string>
+    <string name="idgo800_pp_error">"Nouveau PIN invalide"</string>
+    <string name="idgo800_pp_error_1">"Le PIN est trop court"</string>
+    <string name="idgo800_pp_error_10">"Le PIN contient une trop longue répétition de caractères adjacents"</string>
+    <string name="idgo800_pp_error_2">"Le PIN est trop long"</string>
+    <string name="idgo800_pp_error_3">"Le PIN contient des caractères non autorisés"</string>
+    <string name="idgo800_pp_error_4">"Le PIN ne contient pas certains caractères obligatoires"</string>
+    <string name="idgo800_pp_error_5">"Le PIN contient trop de répétions de caractères"</string>
+    <string name="idgo800_pp_error_6">"Le PIN contient un caractère qui est répété trop souvent"</string>
+    <string name="idgo800_pp_error_7">"Le PIN contient une répétion de caractères adjacents"</string>
+    <string name="idgo800_pp_error_8">"Le PIN est déjà utilisé"</string>
+    <string name="idgo800_pp_error_9">"Le PIN contient une trop longue séquence de caractères"</string>
+    <string name="idgo800_role">"Role"</string>
+    <string name="idgo800_ui_challenge">"Aléa"</string>
+    <string name="idgo800_ui_change_ko">"Le changement du PIN a échoué"</string>
+    <string name="idgo800_ui_change_pin">"Changement"</string>
+    <string name="idgo800_ui_enter_authentication_pin">"Saisissez votre PIN d'authentification"</string>
+    <string name="idgo800_ui_enter_conf_pin">"Confirmation nouveau PIN"</string>
+    <string name="idgo800_ui_enter_digital_signature_pin">"Saisissez votre PIN de signature digitale"</string>
+    <string name="idgo800_ui_enter_encryption_pin">"Saisissez votre PIN de chiffrement"</string>
+    <string name="idgo800_ui_enter_new_pin">"Nouveau PIN"</string>
+    <string name="idgo800_ui_enter_non_repudiation_pin">"Saisissez votre PIN de non répudiation"</string>
+    <string name="idgo800_ui_enter_old_pin">"Ancien PIN"</string>
+    <string name="idgo800_ui_enter_pin">"Saisissez votre PIN"</string>
+    <string name="idgo800_ui_enter_pin_pp">" Utilisez le clavier du lecteur "</string>
+    <string name="idgo800_ui_enter_puk">"PUK"</string>
+    <string name="idgo800_ui_enter_unblock_pin">"Saisissez votre PIN de déblocage"</string>
+    <string name="idgo800_ui_enter_user_pin">"Saisissez votre PIN"</string>
+    <string name="idgo800_ui_login">"Authentification"</string>
+    <string name="idgo800_ui_login_ko">"L'authentification a échoué"</string>
+    <string name="idgo800_ui_remaining_tries">"Essais restants"</string>
+    <string name="idgo800_ui_response">"Réponse"</string>
+    <string name="idgo800_ui_unblock_ko">"Le déblocage du PIN a échoué"</string>
+    <string name="idgo800_ui_unblock_pin">"Déblocage"</string>
+    <string name="idgo800_ui_wrong_conf">"La confirmation du PIN ne correspond pas"</string>
+    <string name="idgo800_unblock_pin">"PIN de déblocage"</string>
+    <string name="idgo800_unknown">"Inconnu"</string>
+    <string name="idgo800_user_pin">"PIN Utilisateur"</string>
+    <string name="idgo800_yes">"Oui"</string>
+</resources>

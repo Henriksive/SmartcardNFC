@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_gravity="fill_vertical|center"
+    android:clickable="true"
+>
+	<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:paddingTop="15dip"
+    android:paddingBottom="15dip"
+    android:layout_marginLeft="8dip"
+    android:layout_marginRight="8dip"
+    >
+ 		<TextView
+	        android:id="@+id/simple_text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+			android:layout_gravity="center_horizontal"
+	    	android:gravity="center_horizontal"
+	        android:ellipsize="end"
+	        android:singleLine="false"
+	        style="@style/idgo800_Text.Black"
+	    />
+	</ScrollView>
+</LinearLayout>
+
+
+
+

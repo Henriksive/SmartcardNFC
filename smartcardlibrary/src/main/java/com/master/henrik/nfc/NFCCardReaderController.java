@@ -6,7 +6,7 @@ import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.util.Log;
 
-import com.master.henrik.controller.SmartcardControllerInterface;
+import com.master.henrik.controller.NFCSmartcardControllerInterface;
 import com.master.henrik.shared.Converter;
 import com.master.henrik.shared.StorageHandler;
 
@@ -27,15 +27,15 @@ public class NFCCardReaderController implements NFCCardCallback{
     public static int READER_FLAGS = NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
     private Activity _currentActivity;
     public static String AIDString;
-    private WeakReference<SmartcardControllerInterface> _smcInterface;
+    private WeakReference<NFCSmartcardControllerInterface> _smcInterface;
     private ArrayList<byte[]> _dataList;
     private int _packetCounter;
     private String _receivedData;
     private StorageHandler storageHandler;
 
-    public NFCCardReaderController(SmartcardControllerInterface smcInterface, Activity currentActivity){
+    public NFCCardReaderController(NFCSmartcardControllerInterface smcInterface, Activity currentActivity){
         nfcReader = new NFCCardReader(this);
-        _smcInterface = new WeakReference<SmartcardControllerInterface>(smcInterface);
+        _smcInterface = new WeakReference<NFCSmartcardControllerInterface>(smcInterface);
         _currentActivity = currentActivity;
         _dataList = new ArrayList<byte[]>();
         storageHandler = new StorageHandler(currentActivity.getApplicationContext());
