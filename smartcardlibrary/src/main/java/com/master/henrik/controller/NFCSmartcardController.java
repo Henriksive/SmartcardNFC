@@ -18,6 +18,7 @@ public class NFCSmartcardController {
     private static final String TAG = "NFCSmartcardController";
     private static final String PREFIX_COMMAND = "80";
     private static final double framesize = ApduStatics.extendedAPDULength;
+    private static final double framesizeAES = ApduStatics.extendedAPDULengthAES;
 
     private int numberOfFrames;
 
@@ -36,8 +37,8 @@ public class NFCSmartcardController {
      * @param cardInstruction Instruction on Smartcard application
      * @param hexData Payload
      */
-    public void sendDataToNFCCard(String AID, String cardInstruction, String P1, String P2, String hexData){
-        Log.i(TAG, "sendDataToNFCCard()");
+    public void sendPayloadDataToNFCCard(String AID, String cardInstruction, String P1, String P2, String hexData){
+        Log.i(TAG, "sendPayloadDataToNFCCard()");
         nfcCardReaderController = new NFCCardReaderController(mainClass, _currentActivity);
         nfcCardReaderController.AIDString = AID;
 
@@ -45,12 +46,12 @@ public class NFCSmartcardController {
         numberOfFrames = (int)Math.ceil(byteData.length / framesize);
 
 
-        sliceIntoFramesAndInsertInQueue(byteData, cardInstruction, P1, P2);
+        sliceIntoFramesAndInsertInQueueForPayload(byteData, cardInstruction, P1, P2);
 
         nfcCardReaderController.initiateNFCTransaction();
     }
 
-    private void sliceIntoFramesAndInsertInQueue(byte[] byteData, String cardInstruction, String P1, String P2) {
+    private void sliceIntoFramesAndInsertInQueueForPayload(byte[] byteData, String cardInstruction, String P1, String P2) {
         for(int i = 0; i < numberOfFrames; i++){
             int start = (int)(i*framesize);
             int end = (int)(i*framesize + framesize);
@@ -82,6 +83,70 @@ public class NFCSmartcardController {
             nfcCardReaderController.addToCommandQueue(fullCommand);
         }
     }
+
+    public void sendAESCryptoDataToNFCCard(String AID, String cardInstruction, String P1, String P2, String hexData){
+        Log.i(TAG, "sendCryptoDataToNFCCard()");
+        nfcCardReaderController = new NFCCardReaderController(mainClass, _currentActivity);
+        nfcCardReaderController.AIDString = AID;
+
+        byte[] paddedByteData;
+        byte[] byteData = Converter.HexStringToByteArray(hexData);
+        Log.i(TAG, "byteDatalength: " + byteData.length);
+        int remainder = byteData.length % ApduStatics.AESBlockSize;
+        Log.i(TAG, "Remainder: " + remainder);
+        if(remainder != 0){
+            int missingPad = ApduStatics.AESBlockSize - remainder;
+            paddedByteData = new byte[byteData.length + missingPad];
+            System.arraycopy(byteData, 0, paddedByteData, 0, byteData.length);
+            System.arraycopy(ApduStatics.AESPadArray, 0, paddedByteData ,byteData.length, missingPad);
+        }
+        else{
+            paddedByteData = byteData;
+        }
+        Log.i(TAG, "New byteDatalenght: " + paddedByteData.length);
+
+        numberOfFrames = (int)Math.ceil(paddedByteData.length / framesizeAES);
+
+
+        sliceIntoFramesAndInsertInQueueForAESCrypto(paddedByteData, cardInstruction, P1, P2);
+
+        nfcCardReaderController.initiateNFCTransaction();
+    }
+
+    private void sliceIntoFramesAndInsertInQueueForAESCrypto(byte[] byteData, String cardInstruction, String P1, String P2) {
+        for(int i = 0; i < numberOfFrames; i++){
+            int start = (int)(i*framesizeAES);
+            int end = (int)(i*framesizeAES + framesizeAES);
+            if(end > byteData.length) {
+                end = byteData.length;
+            }
+            byte[] currentData = Arrays.copyOfRange(byteData, start, end);
+
+
+            String hexLengthLC = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
+            String hexLengthLE = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
+            Log.d(TAG,"Payload int size: " + currentData.length);
+            Log.d(TAG,"Payload hex size: " + hexLengthLC);
+
+            byte[] byteCurrentLengthLC = Converter.HexStringToByteArray("00" +hexLengthLC);
+            byte[] byteCurrentLengthLE = Converter.HexStringToByteArray(hexLengthLE);
+            //byte[] byteCurrentLength = Converter.HexStringToByteArray("000001");
+
+            String hexHeader = PREFIX_COMMAND + cardInstruction + P1 + P2;
+            byte[] byteHeader = Converter.HexStringToByteArray(hexHeader);
+
+            byte[] fullHeader = Common.mergeByteArray(byteHeader, byteCurrentLengthLC);
+            byte[] fullPayload = Common.mergeByteArray(currentData, byteCurrentLengthLE);
+
+            byte[] fullCommand = Common.mergeByteArray(fullHeader, fullPayload);
+
+
+
+            nfcCardReaderController.addToCommandQueue(fullCommand);
+        }
+    }
+
+
 
     /**
      * Method for turning of NFC discovery.

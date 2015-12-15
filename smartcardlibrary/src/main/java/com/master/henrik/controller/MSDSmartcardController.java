@@ -57,14 +57,24 @@ public class MSDSmartcardController {
             }
             byte[] currentData = Arrays.copyOfRange(byteData, start, end);
 
-
-            String hexLengthLC = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
-            String hexLengthLE = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
-            Log.d(TAG,"Payload int size: " + currentData.length);
-            Log.d(TAG,"Payload hex size: " + hexLengthLC);
-
-            byte[] byteCurrentLengthLC = Converter.HexStringToByteArray("00" +hexLengthLC);
-            byte[] byteCurrentLengthLE = Converter.HexStringToByteArray(hexLengthLE);
+            String hexLengthLC;
+            String hexLengthLE;
+            byte[] byteCurrentLengthLC;
+            byte[] byteCurrentLengthLE;
+            if(framesize > 255) {
+                hexLengthLC = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
+                hexLengthLE = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
+                byteCurrentLengthLC = Converter.HexStringToByteArray("00" + hexLengthLC);
+                byteCurrentLengthLE = Converter.HexStringToByteArray(hexLengthLE);
+            }
+            else {
+                hexLengthLC = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length)).substring(2);
+                hexLengthLE = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length)).substring(2);
+                byteCurrentLengthLC = Converter.HexStringToByteArray(hexLengthLC);
+                byteCurrentLengthLE = Converter.HexStringToByteArray(hexLengthLE);
+            }
+            Log.d(TAG, "Payload int size: " + currentData.length);
+            Log.d(TAG, "Payload hex size: " + hexLengthLC);
             //byte[] byteCurrentLength = Converter.HexStringToByteArray("000001");
 
             String hexHeader = PREFIX_COMMAND + cardInstruction + P1 + P2;

@@ -68,7 +68,12 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
                 //Send commands
                 if (Arrays.equals(SELECT_OK_SW, statusWord)) {
 
+                    //byte[] testData2 = Converter.HexStringToByteArray("08070000040102030404");
+                    byte[] testData = Converter.HexStringToByteArray("800900000000040102030400FF");
+                    byte[] testData2 = Converter.HexStringToByteArray("80070000000004010203040004");
+                    //byte[] dekryptdata = Converter.HexStringToByteArray("8007000000000510569F370B0005");
                     for(byte[] payloadData : _dataList){
+                        //payloadData = testData;
                         Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(payloadData));
                         byte[] response = isoDep.transceive(payloadData);
 

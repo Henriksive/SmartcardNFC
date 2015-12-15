@@ -136,24 +136,24 @@ public class MSDCardReader implements MSDCardCallback{
                         Log.d(TAG, "IDGO isInit: " + IDGoMain.isInitialized());
                         Log.d(TAG, "IDGO isStarted: " + IDGoMain.isStarted());
                         Log.d(TAG, "SelectAPDU: " + Converter.ByteArrayToHexString(selectAID));
-                        byte[] test = Converter.HexStringToByteArray("80080000043845445904");
-                        byte[] test2 = Converter.HexStringToByteArray("80080000000004384544590004");
+                        byte[] test = Converter.HexStringToByteArray("80060000043845445904");
+                        byte[] test2 = Converter.HexStringToByteArray("80070000000004384544590004");
+                        //byte[] test3 = Converter.HexStringToByteArray("80080000FF38454459336332674E6E7167694649714E4D5A744F6C3739773972396D51733267564A6642544D46783034554B524F7357673778386F68676737734259345666784E6D585149786A6349307246544D68723946736E5A4A48585146646F7776465336496B3377377371684C6D533747513278624147336C304937644750663039426570346832617433546F5464754E44534774756532555853384331656F575845645832394C624C63415937376E7053514948544C45556D706F44674D76384953794B7A664D75373764674F3934775737714B74394E734E673164533448396E6E37724151494943704737514E44316B354A4C453579614333516748387963FF");
 
 
                         for(byte[] payloadData : _dataList){
-                            /*
-                            Log.d(TAG, "PAYLOAD: " + Converter.ByteArrayToHexString(payloadData));
-                            Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(test2));
+                            Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(payloadData));
                             response = mApdu.APDU_Transmit(
                                     mApduSessionId,
-                                    test,
-                                    20000
+                                    payloadData,
+                                    5000
                             );
-                            */
-                            response = mApdu.APDU_GetATR(mApduSessionId);
-                            Log.d(TAG, "ATR i byte: " + response.toString());
-                            Log.d(TAG, "ATR i hex: " + Converter.ByteArrayToHexString(response));
-                            Log.d(TAG, "ATR som String: " + Converter.hexToString(Converter.ByteArrayToHexString(response)));
+                            Log.d(TAG, "Received: " + Converter.ByteArrayToHexString(response));
+
+                            //response = mApdu.APDU_GetATR(mApduSessionId);
+                            //Log.d(TAG, "ATR i byte: " + response.toString());
+                            //Log.d(TAG, "ATR i hex: " + Converter.ByteArrayToHexString(response));
+                            //Log.d(TAG, "ATR som String: " + Converter.hexToString(Converter.ByteArrayToHexString(response)));
 
 
 
@@ -185,7 +185,7 @@ public class MSDCardReader implements MSDCardCallback{
         }
 
         private void writeToFile(byte[] data){
-            storageHandler.writeToFile(Arrays.copyOfRange(data, 0, data.length - 4));
+            storageHandler.writeToFile(data);
 
         }
     }

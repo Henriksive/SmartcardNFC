@@ -10,10 +10,26 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send Payload"
+        android:layout_height="150px"
+        android:text="Payload Activity"
+        android:layout_marginTop="50px"
         android:id="@+id/btnPayload"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp" />
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:text="Crypto Activity"
+        android:layout_marginTop="50px"
+        android:id="@+id/btnCrypto"
+        android:layout_below="@+id/btnPayload"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:text="Keystore Activity"
+        android:layout_marginTop="50px"
+        android:id="@+id/btnKeyStore"
+        android:layout_below="@+id/btnCrypto"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
