@@ -49,10 +49,7 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
         if (isoDep != null) {
             try {
                 isoDep.connect();
-                Log.i(TAG, "MAX LENGTH : " + isoDep.getMaxTransceiveLength());
-                Log.i(TAG, "Timeout (ms) : " + isoDep.getTimeout());
                 isoDep.setTimeout(60000);
-                Log.i(TAG, "New timeout (ms) : " + isoDep.getTimeout());
 
                 //Select correct application on card
                 Log.d(TAG, "Starting select application");
@@ -63,14 +60,14 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
 
                 int resultLength = result.length;
                 byte[] statusWord = {result[resultLength-2], result[resultLength-1]};
-                Log.d(TAG, "Received: " + statusWord.toString());
+                Log.d(TAG, "Received: " + Converter.ByteArrayToHexString(statusWord));
 
                 //Send commands
                 if (Arrays.equals(SELECT_OK_SW, statusWord)) {
 
                     //byte[] testData2 = Converter.HexStringToByteArray("08070000040102030404");
-                    byte[] testData = Converter.HexStringToByteArray("800900000000040102030400FF");
-                    byte[] testData2 = Converter.HexStringToByteArray("80070000000004010203040004");
+                    //byte[] testData = Converter.HexStringToByteArray("800900000000040102030400FF");
+                    //byte[] testData2 = Converter.HexStringToByteArray("80070000000004010203040004");
                     //byte[] dekryptdata = Converter.HexStringToByteArray("8007000000000510569F370B0005");
                     for(byte[] payloadData : _dataList){
                         //payloadData = testData;
@@ -81,6 +78,9 @@ public class NFCCardReader implements NfcAdapter.ReaderCallback {
 
                         cCardCallBack.get().onInfoReceived(Converter.ByteArrayToHexString(response));
                     }
+                }
+                else{
+                    Log.d(TAG, "SELECT FAILED");
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Could not communicate with NFC card: " + e.toString());

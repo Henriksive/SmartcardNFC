@@ -98,7 +98,8 @@
 
         <!-- WTF IS THIS (Up) -->
         <activity android:name=".CryptoActivity" />
-        <activity android:name=".AndroidKeysActivity"></activity>
+        <activity android:name=".AndroidKeysActivity" />
+        <activity android:name=".BindingActivity"></activity>
     </application>
 
 </manifest>

@@ -68,6 +68,7 @@ public class NFCCardReaderController implements NFCCardCallback{
 
     @Override
     public void onInfoReceived(String info) {
+        Log.d(TAG, info);
         _packetCounter++;
         storageHandler.writeToFile(Converter.HexStringToByteArray(info.substring(0, info.length()-4)));
         if(_packetCounter == _dataList.size()) {

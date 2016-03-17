@@ -142,10 +142,10 @@ public class MSDCardReader implements MSDCardCallback{
 
 
                         for(byte[] payloadData : _dataList){
-                            Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(payloadData));
+                            Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(test));
                             response = mApdu.APDU_Transmit(
                                     mApduSessionId,
-                                    payloadData,
+                                    test,
                                     5000
                             );
                             Log.d(TAG, "Received: " + Converter.ByteArrayToHexString(response));

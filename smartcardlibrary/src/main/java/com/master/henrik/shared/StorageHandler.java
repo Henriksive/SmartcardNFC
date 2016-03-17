@@ -83,7 +83,7 @@ public class StorageHandler {
             while (fileInputStream.read(input) != -1) {
                 Log.d(TAG, "Reading");
             }
-            content += new String(input);
+            content += new String(Converter.ByteArrayToHexString(input));
             fileInputStream.close();
         } catch (FileNotFoundException e) {
             Log.e(TAG, e.toString());

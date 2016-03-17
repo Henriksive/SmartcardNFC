@@ -72,8 +72,9 @@ public class CryptoActivity extends AppCompatActivity implements NFCSmartcardCon
 
         String message = storageHandler.readFromFileInAssets("smt_32000.txt");
 
-
         String hexMessage = Converter.StringToHex(message);
+        hexMessage = "01030307010303070103030701030307";
+        hexMessage = "9BE1FE5ED9572ADDCC7A21ED3EA3E99B";
         Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName) + "");
 
         startTime = System.nanoTime();

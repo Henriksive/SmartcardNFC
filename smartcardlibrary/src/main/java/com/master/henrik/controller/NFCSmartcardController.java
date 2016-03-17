@@ -26,6 +26,7 @@ public class NFCSmartcardController {
     private Activity _currentActivity;
     private NFCCardReaderController nfcCardReaderController;
 
+
     public NFCSmartcardController(NFCSmartcardControllerInterface mClass, Activity currentActivity){
         mainClass = mClass;
         _currentActivity = currentActivity;
@@ -62,13 +63,10 @@ public class NFCSmartcardController {
 
 
             String hexLengthLC = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
-            String hexLengthLE = Converter.hexLengthToProperHex(Integer.toHexString(currentData.length));
-            Log.d(TAG,"Payload int size: " + currentData.length);
-            Log.d(TAG,"Payload hex size: " + hexLengthLC);
+            String hexLengthLE = Converter.hexLengthToProperHex(Integer.toHexString(ApduStatics.maxDefaultLE));
 
             byte[] byteCurrentLengthLC = Converter.HexStringToByteArray("00" +hexLengthLC);
             byte[] byteCurrentLengthLE = Converter.HexStringToByteArray(hexLengthLE);
-            //byte[] byteCurrentLength = Converter.HexStringToByteArray("000001");
 
             String hexHeader = PREFIX_COMMAND + cardInstruction + P1 + P2;
             byte[] byteHeader = Converter.HexStringToByteArray(hexHeader);

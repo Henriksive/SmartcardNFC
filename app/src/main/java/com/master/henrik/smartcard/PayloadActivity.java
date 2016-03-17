@@ -139,7 +139,7 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
         Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName)+ "");
 
         startTime = System.nanoTime();
-        nfcscc.sendPayloadDataToNFCCard(AID, "06", "00", "00", hexMessage);
+        nfcscc.sendPayloadDataToNFCCard(AID, "08", "00", "00", hexMessage);
     }
 
     private void setupNFCController() {
