@@ -42,6 +42,7 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
     private void setupKeys(){
         try {
             kpg = KeyPairGenerator.getInstance("RSA");
+            //kpg.initialize(2048);
             kpg.initialize(512);
             keys = kpg.generateKeyPair();
 
@@ -80,14 +81,13 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
     }
 
     private void initiateBinding(){
-
         sendPublicKey();
         /*
         transactionstep = 0;
         Log.i(TAG, "Initiated binding.");
         String hexMessage = Converter.StringToHex("444");
         sendMessage(hexMessage, "01");
-*/
+    */
     }
 
     private void sendMessage(String hexMessage, String p1){
@@ -146,6 +146,7 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
         byte[] publicByteArrExp = mPub.getPublicExponent().toByteArray();
 
         String publicHexKeyMod = Converter.ByteArrayToHexString(publicByteArrMod);
+        //String modLength = "0" + Integer.toHexString(publicHexKeyMod.length()/2);
         String modLength = Integer.toHexString(publicHexKeyMod.length()/2);
 
         Log.d(TAG, "Mod: " + publicHexKeyMod);
@@ -153,13 +154,15 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
 
         String publicHexKeyExp = Converter.ByteArrayToHexString(publicByteArrExp);
         String expLength = "0" + Integer.toHexString(publicHexKeyExp.length()/2); //TODO: DANGEROUS
+        //String expLength =  Integer.toHexString(publicHexKeyExp.length()/2); //TODO: DANGEROUS
         Log.d(TAG, "Exp: " + publicHexKeyExp);
         Log.d(TAG, publicHexKeyExp.length() + " : " +expLength);
 
         String fullMessage = modLength + publicHexKeyMod + expLength + publicHexKeyExp;
 
 
-        Log.d(TAG, "Fullmsg: " + fullMessage.length());
+        Log.d(TAG, "Fullmsg length: " + fullMessage.length());
+        Log.d(TAG, "Fullmsg: " + fullMessage);
         sendMessage(fullMessage, "03");
     }
 
@@ -183,11 +186,13 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
         nfcscc.disableNFC();
         Log.i(TAG, "NFCCallback: " + completionStatus);
 
-        //StorageHandler storageHandler = new StorageHandler(getApplicationContext());
+        StorageHandler storageHandler = new StorageHandler(getApplicationContext());
 
-        //String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
+            // String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
+            //handleTransaction(received);
 
-        //handleTransaction(received);
+
+
 
     }
 
