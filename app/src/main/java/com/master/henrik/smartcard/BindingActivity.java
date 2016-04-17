@@ -82,19 +82,18 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
 
     private void initiateBinding(){
         sendPublicKey();
-        /*
         transactionstep = 0;
         Log.i(TAG, "Initiated binding.");
         String hexMessage = Converter.StringToHex("444");
         sendMessage(hexMessage, "01");
-    */
+
     }
 
     private void sendMessage(String hexMessage, String p1){
         if(nfcscc == null){
             nfcscc = new NFCSmartcardController(this, this);
         }
-        nfcscc.sendPayloadDataToNFCCard(AID, "05", p1, "00", hexMessage);
+            nfcscc.sendPayloadDataToNFCCard(AID, "05", p1, "00", hexMessage);
     }
 
     private void sendPINCode(String code){
@@ -104,12 +103,14 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
     private void handleTransaction(String receivedHexString){
         String[] hexValues = hexStringToHexArray(receivedHexString);
         if(hexValues[1].equals("05")){
+            Log.d(TAG, "RESET step");
             //Reset was performed
             transactionstep = 0;
         }
         else {
             switch (transactionstep) {
                 case 0:
+                    Log.d(TAG, "Case 0");
 
                     if (hexValues[1].equals("00")) {
                         //Smart card wants pin code
@@ -188,8 +189,8 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
 
         StorageHandler storageHandler = new StorageHandler(getApplicationContext());
 
-            // String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
-            //handleTransaction(received);
+            String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
+            handleTransaction(received);
 
 
 

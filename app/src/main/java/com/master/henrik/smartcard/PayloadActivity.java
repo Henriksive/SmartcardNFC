@@ -103,15 +103,15 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
 
         StorageHandler storageHandler = new StorageHandler(this);
 
-        message = storageHandler.readFromFileInAssets("smt_250.txt");
-        String hexMessage = Converter.StringToHex(message);
+        //message = storageHandler.readFromFileInAssets("smt_250.txt");
+        //String hexMessage = Converter.StringToHex(message);
 
         Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName)+ "");
 
-
+        String hexMessage = "04";
         startTime = System.nanoTime();
 
-        msdscc.sendDataTomSDCard(AID, "06", "00", "00", hexMessage);
+        msdscc.sendDataTomSDCard(AID, "01", "00", "00", hexMessage);
     }
 
     private void setupmSDController() {

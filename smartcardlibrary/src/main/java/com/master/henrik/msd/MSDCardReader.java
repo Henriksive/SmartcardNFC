@@ -139,13 +139,13 @@ public class MSDCardReader implements MSDCardCallback{
                         byte[] test = Converter.HexStringToByteArray("80060000043845445904");
                         byte[] test2 = Converter.HexStringToByteArray("80070000000004384544590004");
                         //byte[] test3 = Converter.HexStringToByteArray("80080000FF38454459336332674E6E7167694649714E4D5A744F6C3739773972396D51733267564A6642544D46783034554B524F7357673778386F68676737734259345666784E6D585149786A6349307246544D68723946736E5A4A48585146646F7776465336496B3377377371684C6D533747513278624147336C304937644750663039426570346832617433546F5464754E44534774756532555853384331656F575845645832394C624C63415937376E7053514948544C45556D706F44674D76384953794B7A664D75373764674F3934775737714B74394E734E673164533448396E6E37724151494943704737514E44316B354A4C453579614333516748387963FF");
-
+                        byte[] sigTest = Converter.HexStringToByteArray("80010000010408");
 
                         for(byte[] payloadData : _dataList){
-                            Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(test));
+                            Log.d(TAG, "Sending: " + Converter.ByteArrayToHexString(sigTest));
                             response = mApdu.APDU_Transmit(
                                     mApduSessionId,
-                                    test,
+                                    sigTest,
                                     5000
                             );
                             Log.d(TAG, "Received: " + Converter.ByteArrayToHexString(response));
