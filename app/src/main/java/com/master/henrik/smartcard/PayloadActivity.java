@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.master.henrik.controller.CommunicationController;
 import com.master.henrik.controller.MSDSmartcardController;
 import com.master.henrik.controller.MSDSmartcardControllerInterface;
 import com.master.henrik.controller.NFCSmartcardController;
@@ -27,6 +28,8 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
     String message;
     NFCSmartcardController nfcscc;
     MSDSmartcardController msdscc;
+
+    CommunicationController cc = new CommunicationController();
 
     //TIMING
     long startTime;
@@ -82,7 +85,7 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
         btnTransmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initNFCCommunication();
+                nfcButtonClick();
             }
         });
 
@@ -90,85 +93,51 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
         btnTransmitDatamSD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initmSDCommunication();
+                msdButtonClick();
             }
         });
     }
 
-    private void initmSDCommunication(){
 
-        Log.d(TAG, "mSD");
+
+
+
+    private void nfcButtonClick(){
         String AID = lblAID.getText().toString();
-        setupmSDController();
+        StorageHandler storageHandler = new StorageHandler(getApplicationContext());
+        message = storageHandler.readFromFileInAssets("smt_250.txt");
+        Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName)+ "");
+        String hexMessage = Converter.StringToHex(message);
 
+        cc.setupNFCController(this, this);
+        cc.initNFCCommunication(AID, hexMessage);
+    }
+
+    private void msdButtonClick(){
+        String AID = lblAID.getText().toString();
         StorageHandler storageHandler = new StorageHandler(this);
 
-        //message = storageHandler.readFromFileInAssets("smt_250.txt");
-        //String hexMessage = Converter.StringToHex(message);
-
-        Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName)+ "");
-
+        Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName) + "");
         String hexMessage = "04";
-        startTime = System.nanoTime();
 
-        msdscc.sendDataTomSDCard(AID, "01", "00", "00", hexMessage);
+
+        cc.setupmSDController(this, this);
+        cc.initmSDCommunication(AID, hexMessage);
     }
 
-    private void setupmSDController() {
-        if(msdscc == null) {
-            msdscc = new MSDSmartcardController(this, this);
-        }
-    }
 
-    private void initNFCCommunication(){
-
-        setupNFCController();
-
-        Log.i(TAG, "Initiated NFCCommunication.");
-        String AID = lblAID.getText().toString();
-
-        StorageHandler storageHandler = new StorageHandler(getApplicationContext());
-
-        message = storageHandler.readFromFileInAssets("smt_250.txt");
-
-
-
-        String hexMessage = Converter.StringToHex(message);
-        //hexMessage = "95404F3FB1CFE825E547FC18AFEC514C5491786E70B43936CFCCCA6824BB5D74E69F6C155F5735C8A737A3E300FF5BE7B1D4A9E5401D175BAF77E6778829425A";
-
-        Log.i(TAG, storageHandler.deleteFile(FilePaths.tempStorageFileName)+ "");
-
-        startTime = System.nanoTime();
-        nfcscc.sendPayloadDataToNFCCard(AID, "08", "00", "00", hexMessage);
-    }
-
-    private void setupNFCController() {
-        if(nfcscc == null) {
-            nfcscc = new NFCSmartcardController(this, this);
-        }
-    }
 
     @Override
     public void nfcCallback(final String completionStatus){
-        endTime = System.nanoTime();
-        final double totalTime = ((endTime-startTime)/1000000000.0);
-        Log.i(TAG, "Total transaction time: " + totalTime + " seconds");
-
-
         StorageHandler storageHandler = new StorageHandler(getApplicationContext());
 
-        //String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
-        String received = "";
-        //TODO!
-        final boolean isEqual = message.equals(received);
-        Log.i(TAG, "Received and sent is equal: " +isEqual);
-
-
+        String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
+        Log.i(TAG, "got: " + received);
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                outputField.setText(totalTime + " seconds \nSent and received is equal: " +isEqual);
+                outputField.setText("Useful text here");
             }
         });
 
@@ -176,17 +145,16 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
 
     @Override
     public void mSDCallback(String completionStatus) {
-        endTime = System.nanoTime();
-        final double totalTime = ((endTime-startTime)/1000000000.0);
-        Log.d(TAG, "MSDCALLBACK");
-        Log.d(TAG, completionStatus);
         StorageHandler storageHandler = new StorageHandler(getApplicationContext());
 
-        //String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
-        String received = "";
-        Log.d(TAG, received);
-        final boolean isEqual = message.equals(received);
-        Log.i(TAG, "Received and sent is equal: " + isEqual);
-        outputField.setText(totalTime + " seconds \nSent and received is equal: " +isEqual);
+        String received = storageHandler.readFromFileAppDir(FilePaths.tempStorageFileName);
+        Log.d(TAG, "got: " + received);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                outputField.setText("Useful text here");
+            }
+        });
     }
 }

@@ -78,7 +78,6 @@ public class StorageHandler {
         String content = "";
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(outputPath, name));
-
             byte[] input = new byte[fileInputStream.available()];
             while (fileInputStream.read(input) != -1) {
                 Log.d(TAG, "Reading");

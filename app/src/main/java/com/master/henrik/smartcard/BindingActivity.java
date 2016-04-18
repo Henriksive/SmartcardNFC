@@ -1,15 +1,14 @@
 package com.master.henrik.smartcard;
 
-import android.app.ExpandableListActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.master.henrik.controller.CommunicationController;
 import com.master.henrik.controller.NFCSmartcardController;
 import com.master.henrik.controller.NFCSmartcardControllerInterface;
-import com.master.henrik.shared.Converter;
 import com.master.henrik.shared.StorageHandler;
 import com.master.henrik.statics.FilePaths;
 
@@ -17,7 +16,6 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPublicKey;
-import java.util.Arrays;
 
 public class BindingActivity extends AppCompatActivity implements NFCSmartcardControllerInterface, onSubmitListener{
     final String TAG = "BindingActivity";
@@ -25,6 +23,7 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
     Button initiateButton;
     Button resetButton;
     String AID = "0102030405060708090007";
+    CommunicationController cc = new CommunicationController();
 
     private KeyPairGenerator kpg;
     private KeyPair keys;
@@ -81,12 +80,11 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
     }
 
     private void initiateBinding(){
-        sendPublicKey();
         transactionstep = 0;
         Log.i(TAG, "Initiated binding.");
-        String hexMessage = Converter.StringToHex("444");
-        sendMessage(hexMessage, "01");
-
+        cc.bindingInit(this, this);
+        cc.bindingStepOne(AID);
+        //cc.bindingStepThree(AID, (RSAPublicKey) keys.getPublic());
     }
 
     private void sendMessage(String hexMessage, String p1){
@@ -97,10 +95,11 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
     }
 
     private void sendPINCode(String code){
-        nfcscc.sendPayloadDataToNFCCard(AID, "05", "02", "00", code);
+       cc.bindingStepTwo(AID, code);
     }
 
     private void handleTransaction(String receivedHexString){
+        Log.d(TAG, "Handling");
         String[] hexValues = hexStringToHexArray(receivedHexString);
         if(hexValues[1].equals("05")){
             Log.d(TAG, "RESET step");
@@ -127,45 +126,18 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
 
                 case 1:
                     Log.d(TAG, "PIN was accepted, next stage");
-                    sendPublicKey();
-
+                    RSAPublicKey mPub = (RSAPublicKey) keys.getPublic();
+                    cc.bindingStepThree(AID, mPub);
+                    transactionstep++;
                     break;
-
+                case 2:
+                    Log.d(TAG, "DONE");
                 default:
                     Log.d(TAG, "Unrecognized transaction step");
             }
         }
     }
 
-    private void sendPublicKey() {
-
-        RSAPublicKey mPub = (RSAPublicKey) keys.getPublic();
-
-
-        byte[] publicByteArrModTemp = mPub.getModulus().toByteArray();
-        byte[] publicByteArrMod = Arrays.copyOfRange(publicByteArrModTemp, 1, publicByteArrModTemp.length); //Remove signed short!
-        byte[] publicByteArrExp = mPub.getPublicExponent().toByteArray();
-
-        String publicHexKeyMod = Converter.ByteArrayToHexString(publicByteArrMod);
-        //String modLength = "0" + Integer.toHexString(publicHexKeyMod.length()/2);
-        String modLength = Integer.toHexString(publicHexKeyMod.length()/2);
-
-        Log.d(TAG, "Mod: " + publicHexKeyMod);
-        Log.d(TAG, publicHexKeyMod.length() +" : " + modLength);
-
-        String publicHexKeyExp = Converter.ByteArrayToHexString(publicByteArrExp);
-        String expLength = "0" + Integer.toHexString(publicHexKeyExp.length()/2); //TODO: DANGEROUS
-        //String expLength =  Integer.toHexString(publicHexKeyExp.length()/2); //TODO: DANGEROUS
-        Log.d(TAG, "Exp: " + publicHexKeyExp);
-        Log.d(TAG, publicHexKeyExp.length() + " : " +expLength);
-
-        String fullMessage = modLength + publicHexKeyMod + expLength + publicHexKeyExp;
-
-
-        Log.d(TAG, "Fullmsg length: " + fullMessage.length());
-        Log.d(TAG, "Fullmsg: " + fullMessage);
-        sendMessage(fullMessage, "03");
-    }
 
     private String[] hexStringToHexArray(String s){
         String[] collection = new String[s.length()/2];
@@ -174,6 +146,7 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
         }
         return collection;
     }
+
 
     private void showPINDialog(){
         PincodeDialog pinDialog = new PincodeDialog();
@@ -184,7 +157,7 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
 
     @Override
     public void nfcCallback(String completionStatus) {
-        nfcscc.disableNFC();
+        Log.d(TAG, "CALLBACKTIME");
         Log.i(TAG, "NFCCallback: " + completionStatus);
 
         StorageHandler storageHandler = new StorageHandler(getApplicationContext());
