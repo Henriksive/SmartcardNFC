@@ -31,10 +31,6 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
 
     CommunicationController cc = new CommunicationController();
 
-    //TIMING
-    long startTime;
-    long endTime;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +106,7 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
         String hexMessage = Converter.StringToHex(message);
 
         cc.setupNFCController(this, this);
-        cc.initNFCCommunication(AID, hexMessage);
+        cc.initNFCCommunication(AID, "08", "00", "00", hexMessage);
     }
 
     private void msdButtonClick(){
@@ -122,7 +118,7 @@ public class PayloadActivity extends AppCompatActivity implements NFCSmartcardCo
 
 
         cc.setupmSDController(this, this);
-        cc.initmSDCommunication(AID, hexMessage);
+        cc.initmSDCommunication(AID, "08", "00", "00", hexMessage);
     }
 
 

@@ -76,13 +76,13 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
             nfcscc = new NFCSmartcardController(this, this);
         }
         String hexMessage = "0101";
-        nfcscc.sendPayloadDataToNFCCard(AID, "05", "09", "00", hexMessage);
+        nfcscc.sendDataToNFCCard(AID, "05", "09", "00", hexMessage);
     }
 
     private void initiateBinding(){
         transactionstep = 0;
         Log.i(TAG, "Initiated binding.");
-        cc.bindingInit(this, this);
+        cc.setupNFCController(this, this);
         cc.bindingStepOne(AID);
         //cc.bindingStepThree(AID, (RSAPublicKey) keys.getPublic());
     }
@@ -91,7 +91,7 @@ public class BindingActivity extends AppCompatActivity implements NFCSmartcardCo
         if(nfcscc == null){
             nfcscc = new NFCSmartcardController(this, this);
         }
-            nfcscc.sendPayloadDataToNFCCard(AID, "05", p1, "00", hexMessage);
+            nfcscc.sendDataToNFCCard(AID, "05", p1, "00", hexMessage);
     }
 
     private void sendPINCode(String code){

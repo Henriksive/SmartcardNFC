@@ -3,9 +3,7 @@ package com.master.henrik.controller;
 import android.app.Activity;
 import android.util.Log;
 
-import com.gemalto.gmm.sdk.Apdu;
 import com.master.henrik.nfc.NFCCardReaderController;
-import com.master.henrik.shared.Common;
 import com.master.henrik.shared.Converter;
 import com.master.henrik.statics.ApduStatics;
 
@@ -38,8 +36,8 @@ public class NFCSmartcardController {
      * @param cardInstruction Instruction on Smartcard application
      * @param hexData Payload
      */
-    public void sendPayloadDataToNFCCard(String AID, String cardInstruction, String P1, String P2, String hexData){
-        Log.i(TAG, "sendPayloadDataToNFCCard()");
+    public void sendDataToNFCCard(String AID, String cardInstruction, String P1, String P2, String hexData){
+        Log.i(TAG, "sendDataToNFCCard()");
         nfcCardReaderController = new NFCCardReaderController(mainClass, _currentActivity);
         nfcCardReaderController.AIDString = AID;
 
@@ -47,12 +45,12 @@ public class NFCSmartcardController {
         numberOfFrames = (int)Math.ceil(byteData.length / framesize);
 
 
-        sliceIntoFramesAndInsertInQueueForPayload(byteData, cardInstruction, P1, P2);
+        sliceIntoFramesAndInsertInQueue(byteData, cardInstruction, P1, P2);
 
         nfcCardReaderController.initiateNFCTransaction();
     }
 
-    private void sliceIntoFramesAndInsertInQueueForPayload(byte[] byteData, String cardInstruction, String P1, String P2) {
+    private void sliceIntoFramesAndInsertInQueue(byte[] byteData, String cardInstruction, String P1, String P2) {
         for(int i = 0; i < numberOfFrames; i++){
             int start = (int)(i*framesize);
             int end = (int)(i*framesize + framesize);
@@ -71,10 +69,10 @@ public class NFCSmartcardController {
             String hexHeader = PREFIX_COMMAND + cardInstruction + P1 + P2;
             byte[] byteHeader = Converter.HexStringToByteArray(hexHeader);
 
-            byte[] fullHeader = Common.mergeByteArray(byteHeader, byteCurrentLengthLC);
-            byte[] fullPayload = Common.mergeByteArray(currentData, byteCurrentLengthLE);
+            byte[] fullHeader = Converter.mergeByteArray(byteHeader, byteCurrentLengthLC);
+            byte[] fullPayload = Converter.mergeByteArray(currentData, byteCurrentLengthLE);
 
-            byte[] fullCommand = Common.mergeByteArray(fullHeader, fullPayload);
+            byte[] fullCommand = Converter.mergeByteArray(fullHeader, fullPayload);
 
 
 
@@ -133,10 +131,10 @@ public class NFCSmartcardController {
             String hexHeader = PREFIX_COMMAND + cardInstruction + P1 + P2;
             byte[] byteHeader = Converter.HexStringToByteArray(hexHeader);
 
-            byte[] fullHeader = Common.mergeByteArray(byteHeader, byteCurrentLengthLC);
-            byte[] fullPayload = Common.mergeByteArray(currentData, byteCurrentLengthLE);
+            byte[] fullHeader = Converter.mergeByteArray(byteHeader, byteCurrentLengthLC);
+            byte[] fullPayload = Converter.mergeByteArray(currentData, byteCurrentLengthLE);
 
-            byte[] fullCommand = Common.mergeByteArray(fullHeader, fullPayload);
+            byte[] fullCommand = Converter.mergeByteArray(fullHeader, fullPayload);
 
 
 

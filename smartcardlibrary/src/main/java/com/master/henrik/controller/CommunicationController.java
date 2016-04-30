@@ -23,11 +23,12 @@ public class CommunicationController {
         if(nfcscc == null) {
             nfcscc = new NFCSmartcardController(nfcSmartcardControllerInterface, currentActivity);
         }
+        type = CommunicationType.NFC;
     }
 
-    public void initNFCCommunication(String cardAID, String hexMessage){
+    public void initNFCCommunication(String cardAID, String INS, String P1, String P2,  String hexMessage){
         Log.i(TAG, "Initiated NFCCommunication.");
-        nfcscc.sendPayloadDataToNFCCard(cardAID, "08", "00", "00", hexMessage);
+        nfcscc.sendDataToNFCCard(cardAID, INS, P1, P2, hexMessage);
     }
 
     public void disableNFC(){
@@ -38,28 +39,17 @@ public class CommunicationController {
         if(msdscc == null) {
             msdscc = new MSDSmartcardController(msdSmartcardControllerInterface, currentActivity);
         }
-    }
-
-    public void initmSDCommunication(String cardAID, String hexMessage){
-        Log.i(TAG, "Initiated MSDCommunication.");
-        msdscc.sendDataTomSDCard(cardAID, "01", "00", "00", hexMessage);
-    }
-
-    //Binding
-
-    public void bindingInit(NFCSmartcardControllerInterface nfcSmartcardControllerInterface, Activity currentActivity){
-        type = CommunicationType.NFC;
-        setupNFCController(nfcSmartcardControllerInterface, currentActivity);
-    }
-
-    public void bindingInit(MSDSmartcardControllerInterface msdSmartcardControllerInterface, Activity currentActivity){
         type = CommunicationType.MSD;
-        setupmSDController(msdSmartcardControllerInterface, currentActivity);
+    }
+
+    public void initmSDCommunication(String cardAID, String INS, String P1, String P2,  String hexMessage){
+        Log.i(TAG, "Initiated MSDCommunication.");
+        msdscc.sendDataTomSDCard(cardAID, INS, P1, P2, hexMessage);
     }
 
     public void bindingStepOne(String AID){
         if(type.equals(CommunicationType.NFC)){
-            nfcscc.sendPayloadDataToNFCCard(AID, "05", "01", "00", "00");
+            nfcscc.sendDataToNFCCard(AID, "05", "01", "00", "00");
         }
         else{
             msdscc.sendDataTomSDCard(AID, "05", "01", "00", "00");
@@ -68,7 +58,7 @@ public class CommunicationController {
 
     public void bindingStepTwo(String AID, String code){
         if(type.equals(CommunicationType.NFC)){
-            nfcscc.sendPayloadDataToNFCCard(AID, "05", "02", "00", code);
+            nfcscc.sendDataToNFCCard(AID, "05", "02", "00", code);
         }
         else{
             msdscc.sendDataTomSDCard(AID, "05", "02", "00", code);
@@ -98,6 +88,67 @@ public class CommunicationController {
 
         Log.d(TAG, "Fullmsg length: " + fullMessage.length());
         Log.d(TAG, "Fullmsg: " + fullMessage);
-        nfcscc.sendPayloadDataToNFCCard(AID, "05", "03", "00", fullMessage);
+        nfcscc.sendDataToNFCCard(AID, "05", "03", "00", fullMessage);
+    }
+
+    // Signing
+
+    public void signData(CommunicationType type, String cardAID, String hexMessage){
+        if(type.equals(CommunicationType.NFC)) {
+            nfcscc.sendDataToNFCCard(cardAID, "03", "00", "00", hexMessage);
+        }
+        else{
+            msdscc.sendDataTomSDCard(cardAID, "03", "00", "00", hexMessage);
+        }
+    }
+
+    //RSA
+    public void cryptoRSA(CommunicationType type, boolean encrypt, String cardAID, String hexMessage){
+        String p1 = "02";
+        if(encrypt) {
+            p1 = "01";
+        }
+
+        if(type.equals(CommunicationType.NFC)) {
+            nfcscc.sendDataToNFCCard(cardAID, "06", p1, "00", hexMessage);
+        }
+        else{
+            msdscc.sendDataTomSDCard(cardAID, "06", p1, "00", hexMessage);
+        }
+    }
+
+    //AES
+    public void cryptoAES(CommunicationType type, boolean encrypt, String cardAID, String hexMessage){
+        String p1 = "02";
+        if(encrypt) {
+            p1 = "01";
+        }
+
+        if(type.equals(CommunicationType.NFC)) {
+            nfcscc.sendDataToNFCCard(cardAID, "09", p1, "00", hexMessage);
+        }
+        else{
+            msdscc.sendDataTomSDCard(cardAID, "09", p1, "00", hexMessage);
+        }
+    }
+
+    //Get public key_MOD
+    public void getCardPubMod(CommunicationType type, String cardAID){
+        if(type.equals(CommunicationType.NFC)) {
+            nfcscc.sendDataToNFCCard(cardAID, "01", "00", "00", "00");
+        }
+        else{
+            msdscc.sendDataTomSDCard(cardAID, "01", "00", "00", "00");
+        }
+    }
+
+    //Get public key_EXP
+    public void getCardPubExp(CommunicationType type, String cardAID){
+        if(type.equals(CommunicationType.NFC)) {
+            nfcscc.sendDataToNFCCard(cardAID, "02", "00", "00", "00");
+        }
+        else{
+            msdscc.sendDataTomSDCard(cardAID, "02", "00", "00", "00");
+        }
     }
 }

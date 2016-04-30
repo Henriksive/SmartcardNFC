@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.master.henrik.msd.MSDCardReader;
-import com.master.henrik.shared.Common;
 import com.master.henrik.shared.Converter;
 import com.master.henrik.statics.ApduStatics;
 
@@ -80,10 +79,10 @@ public class MSDSmartcardController {
             String hexHeader = PREFIX_COMMAND + cardInstruction + P1 + P2;
             byte[] byteHeader = Converter.HexStringToByteArray(hexHeader);
 
-            byte[] fullHeader = Common.mergeByteArray(byteHeader, byteCurrentLengthLC);
-            byte[] fullPayload = Common.mergeByteArray(currentData, byteCurrentLengthLE);
+            byte[] fullHeader = Converter.mergeByteArray(byteHeader, byteCurrentLengthLC);
+            byte[] fullPayload = Converter.mergeByteArray(currentData, byteCurrentLengthLE);
 
-            byte[] fullCommand = Common.mergeByteArray(fullHeader, fullPayload);
+            byte[] fullCommand = Converter.mergeByteArray(fullHeader, fullPayload);
 
 
 
